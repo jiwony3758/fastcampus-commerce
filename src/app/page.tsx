@@ -4,11 +4,11 @@ import { useEffect, useRef, useState } from "react"
 
 export default function Home() {
   const [products, setProducts] = useState<
-    { id: string; properties: { id: string[] }[] }[]
+    { id: string; name: string; createdAt: string }[]
   >([])
   const inputRef = useRef<HTMLInputElement>(null)
   useEffect(() => {
-    fetch("http://localhost:3000/api/get-items", {
+    fetch("http://localhost:3000/api/get-products", {
       method: "GET",
     })
       .then((res) => res.json())
@@ -35,6 +35,13 @@ export default function Home() {
       <input ref={inputRef} type="text" placeholder="name" />
       <p>Product List</p>
       {products &&
+        products.map((item) => (
+          <div key={item.id}>
+            {item.name}
+            <span>{item.createdAt}</span>
+          </div>
+        ))}
+      {/* {products &&
         products.map((item, index) => (
           <div key={index}>
             {JSON.stringify(item)}
@@ -63,7 +70,7 @@ export default function Home() {
             <br />
             <br />
           </div>
-        ))}
+        ))} */}
     </main>
   )
 }
