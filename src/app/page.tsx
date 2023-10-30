@@ -1,6 +1,8 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
+import { css } from "@emotion/react"
+import Button from "./components/Buttons"
 
 export default function Home() {
   const [products, setProducts] = useState<
@@ -30,9 +32,24 @@ export default function Home() {
     }
   }
   return (
-    <main>
-      <button onClick={handleClick}>App Jacket</button>
-      <input ref={inputRef} type="text" placeholder="name" />
+    <div>
+      <button
+        css={css`
+          background-color: pink;
+          padding: 16px;
+          border-radius: 8px;
+        `}
+        onClick={handleClick}
+      >
+        App Jacket
+      </button>
+      <Button onClick={handleClick}>AddJacket2</Button>
+      <input
+        className="placeholder:italic placeholder:text-slate-400 block bg-white w-96 border border-slate-300 rounded-md py-2 pl-3 pr-3 shadow-sm focus:outline-none focus:border-red-500 focus:ring-red-500 focus:ring-1 sm:text-sm"
+        ref={inputRef}
+        type="text"
+        placeholder="name"
+      />
       <p>Product List</p>
       {products &&
         products.map((item) => (
@@ -71,6 +88,6 @@ export default function Home() {
             <br />
           </div>
         ))} */}
-    </main>
+    </div>
   )
 }
